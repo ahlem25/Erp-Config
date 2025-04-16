@@ -3,6 +3,6 @@ server:
 
 spring:
   application:
-    name: netflix-discovery-service
+    name: erp-service-discovery
   profiles:
     default: dev
