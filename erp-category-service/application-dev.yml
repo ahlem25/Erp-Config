@@ -4,3 +4,5 @@ server:
 spring:
   application:
     name: erp-category-service
+  profiles:
+    default: dev
