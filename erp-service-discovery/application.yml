@@ -1,8 +1,0 @@
-server:
-  port: 8013
-
-spring:
-  application:
-    name: erp-service-discovery
-  profiles:
-    default: dev

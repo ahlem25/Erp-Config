@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: netflix-api-gateway
+    name: erp-api-gateway-service
   profiles:
     default: dev
   cloud:
