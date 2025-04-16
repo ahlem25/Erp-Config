@@ -9,24 +9,24 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: netflix-user-service
-          uri: lb://netflix-user-service
+        - id: erp-user-service
+          uri: lb://erp-user-service
           predicates:
             - Path=/users-service/**
           filters:
             - RewritePath=/users-service/(?<segment>.*), /$\{segment}  # Strip 'users-service' from the path
-        - id: netflix-category-service
-          uri: lb://netflix-category-service
+        - id: erp-category-service
+          uri: lb://erp-category-service
           predicates:
             - Path=/categories-service/**
           filters:
             - RewritePath=/categories-service/(?<segment>.*), /$\{segment}  # Strip 'categories-service' from the path
-        - id: netflix-movie-service
-          uri: lb://netflix-movie-service
+        - id: erp-product-service
+          uri: lb://erp-product-service
           predicates:
-            - Path=/movies-service/**
+            - Path=/products-service/**
           filters:
-            - RewritePath=/movies-service/(?<segment>.*), /$\{segment}  # Strip 'movies-service' from the path
+            - RewritePath=/products-service/(?<segment>.*), /$\{segment}  # Strip 'product-service' from the path
 
       globalcors: # Optional: Enable CORS globally
         cors-configurations:
