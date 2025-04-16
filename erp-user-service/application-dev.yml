@@ -4,5 +4,3 @@ server:
 spring:
   application:
     name: erp-user-service
-  profiles:
-    default: dev
