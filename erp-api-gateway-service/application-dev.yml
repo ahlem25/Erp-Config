@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: erp-api-gateway-service
-  profiles:
-    default: dev
   cloud:
     gateway:
       routes:
