@@ -126,3 +126,17 @@ management:
   endpoint:
     health:
       show-details: always  # Shows full details in the health endpoint, even for production
+
+# Swagger Configuring
+swagger:
+  title: Swagger APIs Documentation
+  description: This page lists all the REST APIs for Swagger ERP App.
+  version: 1.0.0
+  termsOfServiceUrl: https://gitee.com/log4j/pig
+  license: Apache License Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: CHERNI Ahlem
+    url: https://github.com//ahlem25
+    email: ahlem.cherni112@gmail.com
+
