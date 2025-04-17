@@ -15,9 +15,10 @@ spring:
 eureka:
   client:
     enabled: true
-    prefer-ip-address: true  # Prefer IP address over hostname
     register-with-eureka: true
     fetch-registry: true
+    registration:
+      prefer-ip-address: true # Prefer IP address over hostname
     service-url:
       defaultZone: http://localhost:8013/eureka/
 spring:
