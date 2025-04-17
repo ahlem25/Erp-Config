@@ -11,13 +11,24 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-# eureka client
+
+# Configuring Eureka Client
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     enabled: true
     register-with-eureka: true
     fetch-registry: true
-    registration:
-      prefer-ip-address: true # Prefer IP address over hostname
     service-url:
       defaultZone: http://localhost:8013/eureka/
+
+# Configuring Actuator Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Exposes all available Actuator endpoints
+  endpoint:
+    health:
+      show-details: always  # Shows full details in the health endpoint, even for production
