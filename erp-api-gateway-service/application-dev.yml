@@ -4,6 +4,23 @@ server:
 spring:
   application:
     name: erp-api-gateway-service
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/iss-4u-realm/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            client-id: erp-app-api-gateway
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/iss-4u-realm
   cloud:
     gateway:
       routes:
