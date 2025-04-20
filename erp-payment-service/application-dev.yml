@@ -1,0 +1,6 @@
+server:
+  port: 8059
+
+spring:
+  application:
+    name: erp-payment-service

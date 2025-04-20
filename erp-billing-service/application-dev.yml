@@ -3,4 +3,4 @@ server:
 
 spring:
   application:
-    name: erp-billing-service 
+    name: erp-billing-service
