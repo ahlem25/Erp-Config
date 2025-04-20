@@ -1,3 +1,6 @@
+# Spring JPA - Java Persistence API (DAO Layer)
+# JPA = Spécification
+# Hibernate | EclipseLink = Implémentation
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/achat_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -180,9 +183,17 @@ swagger:
 #            authorization-grant-type: authorization_code
 
 # Logging Configurations
-#logging:
-#  level:
-#    org.springframework.security: INFO
+logging:
+  org.springframework.boot: error
+  org.springframework.security: debug
+  org.springframework.security.web: debug
+  org.apache.catalina: error
+  com.mainul35:
+    - info
+    - trace
+    - debug
+    - error
+    - warn
 #  pattern:
 #    console: "%d{dd-MM-yyyy HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
 

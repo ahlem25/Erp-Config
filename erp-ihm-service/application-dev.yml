@@ -1,6 +1,0 @@
-server:
-  port: 8056
-
-spring:
-  application:
-    name: erp-ihm-service
