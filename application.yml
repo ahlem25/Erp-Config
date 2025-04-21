@@ -1,0 +1,94 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/achat_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ahlem
+    password: achat
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+# Configuring Eureka Client
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8013/eureka/
+
+# Configuring Actuator Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Exposes all available Actuator endpoints
+  endpoint:
+    health:
+      show-details: always  # Shows full details in the health endpoint, even for production
+
+# Spring Doc. Configurations
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+# Swagger Configurations
+swagger:
+  title: Swagger APIs Documentation
+  description: This page lists all the REST APIs for Swagger ERP App.
+  version: 1.0.0
+  termsOfServiceUrl: https://gitee.com/log4j/pig
+  license: Apache License Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: ISS4Y
+    url: iss-4u.com
+    email: ahlem.cherni@iss-4u.com
+
+# KeyCloak Configurations
+#keycloak:
+#  auth-server-url: http://localhost:8080/realms/myrealm
+#  realm: myrealm
+#  resource: myclient
+#  credentials:
+#    secret: myclientsecret
+#  use-resource-role-mappings: true
+#  bearer-only: true
+#  ssl-required: external
+#  public-client: true
+#  confidential-port: 0
+
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          external:
+#            issuer-uri: http://localhost:8080/realms/external
+#        registration:
+#          external:
+#            provider: external
+#            client-name: external-client
+#            client-id: external-client
+#            client-secret: (put your client secret here)
+#            scope:
+#              - openid
+#              - offline_access
+#              - profile
+#            authorization-grant-type: authorization_code
+
+# Logging Configurations
+#logging:
+#  level:
+#    org.springframework.security: INFO
+#  pattern:
+#    console: "%d{dd-MM-yyyy HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
