@@ -1,0 +1,56 @@
+server:
+  port: 8014
+
+spring:
+  application:
+    name: erp-api-gateway-service
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/iss-4u-realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            client-id: erp-app-api-gateway
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8014/login/oauth2/code/keycloak"
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/iss-4u-realm
+  cloud:
+    gateway:
+      routes:
+        - id: erp-user-service
+          uri: lb://erp-user-service
+          predicates:
+            - Path=/users-service/**
+          filters:
+            - RewritePath=/users-service/(?<segment>.*), /$\{segment}  # Strip 'users-service' from the path
+        - id: erp-category-service
+          uri: lb://erp-category-service
+          predicates:
+            - Path=/categories-service/**
+          filters:
+            - RewritePath=/categories-service/(?<segment>.*), /$\{segment}  # Strip 'categories-service' from the path
+        - id: erp-product-service
+          uri: lb://erp-product-service
+          predicates:
+            - Path=/products-service/**
+          filters:
+            - RewritePath=/products-service/(?<segment>.*), /$\{segment}  # Strip 'product-service' from the path
+
+      globalcors: # Optional: Enable CORS globally
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
