@@ -1,0 +1,6 @@
+server:
+  port: 8058
+
+spring:
+  application:
+    name: erp-client-service
