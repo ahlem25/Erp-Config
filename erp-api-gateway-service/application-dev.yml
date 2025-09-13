@@ -91,14 +91,18 @@ spring:
             - Path=/scheduler-service/**
           filters:
             - RewritePath=/scheduler-service/(?<segment>.*), /$\{segment}
-
       globalcors: # Optional: Enable CORS globally
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
+        corsConfigurations:
+          '[/**]': # toutes les routes
+            allowedOrigins: "http://localhost:4200"
             allowedMethods:
               - GET
               - POST
               - PUT
               - DELETE
               - OPTIONS
+            allowedHeaders: "*"
+            exposedHeaders:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
