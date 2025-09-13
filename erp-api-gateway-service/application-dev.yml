@@ -79,6 +79,18 @@ spring:
             - Path=/billings-service/**
           filters:
             - RewritePath=/billings-service/(?<segment>.*), /$\{segment}
+        - id: erp-dashboard-service
+          uri: lb://erp-dashboard-service
+          predicates:
+            - Path=/dashboard-service/**
+          filters:
+            - RewritePath=/dashboard-service/(?<segment>.*), /$\{segment}
+        - id: erp-scheduler-service
+          uri: lb://erp-scheduler-service
+          predicates:
+            - Path=/scheduler-service/**
+          filters:
+            - RewritePath=/scheduler-service/(?<segment>.*), /$\{segment}
 
       globalcors: # Optional: Enable CORS globally
         cors-configurations:
