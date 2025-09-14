@@ -92,13 +92,13 @@ spring:
           filters:
             - RewritePath=/scheduler-service/(?<segment>.*), /$\{segment}
 
-      globalcors: # Optional: Enable CORS globally
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
+#      globalcors: # Optional: Enable CORS globally
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#              - OPTIONS
