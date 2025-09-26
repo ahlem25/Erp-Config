@@ -1,6 +1,6 @@
-# Spring Doc. Configurations
-springdoc:
-  api-docs:
-    enabled: false
-  swagger-ui:
-    enabled: false
+server:
+  port: 8052
+
+spring:
+  application:
+    name: erp-supplier-service

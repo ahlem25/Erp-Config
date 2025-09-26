@@ -1,0 +1,93 @@
+server:
+  port: 8014
+
+spring:
+  application:
+    name: erp-api-gateway-service
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/iss-4u-realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            client-id: erp-app-api-gateway
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8014/login/oauth2/code/keycloak"
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/iss-4u-realm
+  cloud:
+    gateway:
+      routes:
+        - id: erp-user-service
+          uri: lb://erp-user-service
+          predicates:
+            - Path=/users-service/**
+          filters:
+            - RewritePath=/users-service/(?<segment>.*), /$\{segment}
+        - id: erp-supplier-service
+          uri: lb://erp-supplier-service
+          predicates:
+            - Path=/suppliers-service/**
+          filters:
+            - RewritePath=/suppliers-service/(?<segment>.*), /$\{segment}
+        - id: erp-sales-service
+          uri: lb://erp-sales-service
+          predicates:
+            - Path=/sales-service/**
+          filters:
+            - RewritePath=/sales-service/(?<segment>.*), /$\{segment}
+        - id: erp-product-service
+          uri: lb://erp-product-service
+          predicates:
+            - Path=/products-service/**
+          filters:
+            - RewritePath=/products-service/(?<segment>.*), /$\{segment}
+        - id: erp-payment-service
+          uri: lb://erp-payment-service
+          predicates:
+            - Path=/payemnts-service/**
+          filters:
+            - RewritePath=/payemnts-service/(?<segment>.*), /$\{segment}
+        - id: erp-order-service
+          uri: lb://erp-order-service
+          predicates:
+            - Path=/orders-service/**
+          filters:
+            - RewritePath=/orders-service/(?<segment>.*), /$\{segment}
+        - id: erp-inventory-service
+          uri: lb://erp-inventory-service
+          predicates:
+            - Path=/inventory-service/**
+          filters:
+            - RewritePath=/inventory-service/(?<segment>.*), /$\{segment}
+        - id: erp-client-service
+          uri: lb://erp-client-service
+          predicates:
+            - Path=/clients-service/**
+          filters:
+            - RewritePath=/clients-service/(?<segment>.*), /$\{segment}
+        - id: erp-billing-service
+          uri: lb://erp-billing-service
+          predicates:
+            - Path=/billings-service/**
+          filters:
+            - RewritePath=/billings-service/(?<segment>.*), /$\{segment}
+        - id: erp-dashboard-service
+          uri: lb://erp-dashboard-service
+          predicates:
+            - Path=/dashboard-service/**
+          filters:
+            - RewritePath=/dashboard-service/(?<segment>.*), /$\{segment}
+        - id: erp-scheduler-service
+          uri: lb://erp-scheduler-service
+          predicates:
+            - Path=/scheduler-service/**
+          filters:
+            - RewritePath=/scheduler-service/(?<segment>.*), /$\{segment}
