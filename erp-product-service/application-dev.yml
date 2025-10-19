@@ -3,4 +3,45 @@ server:
 
 spring:
   application:
-    name: erp-product-service
+    name: erp-product-service 
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/product_db?useSSL=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:ahlem}
+    password: ${DB_PASSWORD:achat}
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  cloud:
+    aws:
+      s3:
+        bucket: ${AWS_S3_BUCKET_NAME:erp-app-uploads}
+        region: ${AWS_S3_REGION:eu-west-3}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID:}
+        secret-key: ${AWS_SECRET_ACCESS_KEY:}
+      region:
+        static: ${AWS_S3_REGION:eu-west-3}
+# Configuration for file upload
+file:
+  upload:
+    local:
+      directory: uploads  
+    s3:
+      bucket: ${AWS_S3_BUCKET_NAME:erp-app-uploads}
+      region: ${AWS_S3_REGION:eu-west-3}
+      endpoint: ${AWS_S3_ENDPOINT:https://erp-app-uploads.s3.eu-west-3.amazonaws.com} 
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}  
