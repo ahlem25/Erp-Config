@@ -16,6 +16,26 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+  # Configuration AWS S3
+  cloud:
+    aws:
+      s3:
+        bucket: ${AWS_S3_BUCKET_NAME:erp-app-uploads}
+        region: ${AWS_S3_REGION:eu-west-3}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID:}
+        secret-key: ${AWS_SECRET_ACCESS_KEY:}
+      region:
+        static: ${AWS_S3_REGION:eu-west-3}
+# Configuration for file upload
+file:
+  upload:
+    local:
+      directory: uploads
+    s3:
+      bucket: ${AWS_S3_BUCKET_NAME:erp-app-uploads}
+      region: ${AWS_S3_REGION:eu-west-3}
+      endpoint: ${AWS_S3_ENDPOINT:https://erp-app-uploads.s3.eu-west-3.amazonaws.com}
 
 eureka:
   instance:
