@@ -23,13 +23,3 @@ file:
       bucket: ${AWS_S3_BUCKET_NAME:erp-app-uploads}
       region: ${AWS_S3_REGION:eu-west-3}
       endpoint: ${AWS_S3_ENDPOINT:https://erp-app-uploads.s3.eu-west-3.amazonaws.com} 
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    enabled: true
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}  
